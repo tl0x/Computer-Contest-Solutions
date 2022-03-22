@@ -1,21 +1,23 @@
-square = []
-for i in range(4):
-    square.append(list(map(int,input().split())))
-target = sum(square[1])
+import math
+from sys import maxsize
 
-flag = True
+npoints, angle = map(int, input().split())
 
-for i in range(0,4):
-    counter = 0
-    counter2 = 0
-    for j in range(0,4):
-        counter += square[i][j]
-        counter2 += square[j][i]
+point = [math.cos(math.radians(angle)), math.sin(math.radians(angle))]
 
-    if counter != target or counter2 != target:
-        print("not magic")
-        flag = False
-        break
+def findangle(point):
+    x = point[0]; y = point[1]
+    angle = math.degrees(math.atan2(float(x), float(y)))
+    return angle
 
-if flag == True:
-    print("magic")
+
+ans = []
+lstpoints = []
+for i in range(npoints):
+    x, y = map(int, input().split())
+    lstpoints.append([x, y])
+
+for i in range(len(lstpoints)):
+    print(findangle(lstpoints[i]))
+
+
